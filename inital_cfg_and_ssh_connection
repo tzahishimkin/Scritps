@@ -1,0 +1,13 @@
+# This script requires some interaction with the user as it is setting the SH key connection to the Git:
+
+
+# Run key generator:
+ssh-keygen 
+cat ~/.ssh/id_rsa.pub 
+#Pastle the public key to your Git client. Settings->Add key
+
+# Download scripts from Github scripts
+git clone git@github.com:tzahishimkin/Scritps.git scripts
+
+#If all is finished you can run
+sudo bash ./scripts/install_computer_tf_caffe_cv2.sh
