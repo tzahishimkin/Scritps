@@ -13,6 +13,7 @@ rm -rf /var/lib/apt/lists/* \
 
 sudo apt-get update && \
 
+
 # ==================================================================
 # tools
 # ------------------------------------------------------------------
@@ -26,6 +27,37 @@ sudo apt-get update && \
         vim \
         && \
 
+
+# ==================================================================
+# Install lfs for git:
+# ------------------------------------------------------------------
+
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+git lfs install
+
+# ==================================================================
+# Install Nvidia driver, CUDA9, CUDNN7
+# ------------------------------------------------------------------
+
+lspci | grep -i nvidia
+sudo apt-get install gcc
+sudo apt-get install linux-headers-$(uname -r)
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb
+wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libcudnn7-dev_7.0.5.15-1+cuda9.0_amd64.deb
+wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libnccl2_2.1.4-1+cuda9.0_amd64.deb
+wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libnccl-dev_2.1.4-1+cuda9.0_amd64.deb
+
+sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+sudo dpkg -i libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.0.5.15-1+cuda9.0_amd64.deb
+sudo dpkg -i libnccl2_2.1.4-1+cuda9.0_amd64.deb
+sudo dpkg -i libnccl-dev_2.1.4-1+cuda9.0_amd64.deb
+
+sudo apt-get update
+sudo apt-get install cuda
+sudo apt-get install libcudnn7-dev
+sudo apt-get install libnccl-dev
 # ==================================================================
 # python
 # ------------------------------------------------------------------
