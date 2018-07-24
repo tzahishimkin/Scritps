@@ -31,11 +31,9 @@ sudo apt-get update && \
 # ==================================================================
 # Install lfs for git:
 # ------------------------------------------------------------------
-git clone https://github.com/git-lfs/git-lfs.git
-cd git-lgs
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
 sudo git lfs install
-cd -
-#curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 
 
 # ==================================================================
@@ -58,9 +56,9 @@ sudo dpkg -i libnccl2_2.1.4-1+cuda9.0_amd64.deb
 sudo dpkg -i libnccl-dev_2.1.4-1+cuda9.0_amd64.deb
 
 sudo apt-get update
-sudo apt-get install cuda
-sudo apt-get install libcudnn7-dev
-sudo apt-get install libnccl-dev
+sudo apt-get install cuda  -y
+sudo apt-get install libcudnn7-dev  -y
+sudo apt-get install libnccl-dev  -y
 # ==================================================================
 # python
 # ------------------------------------------------------------------
@@ -76,9 +74,9 @@ sudo apt-get install libnccl-dev
 		&& \
     wget -O ~/get-pip.py \
 		https://bootstrap.pypa.io/get-pip.py && \
-    python3.6 ~/get-pip.py && \
-    ln -s /usr/bin/python3.6 /usr/local/bin/python3 && \
-    ln -s /usr/bin/python3.6 /usr/local/bin/python && \
+    sudo python3.6 ~/get-pip.py && \
+    sudo ln -s /usr/bin/python3.6 /usr/local/bin/python3 && \
+    sudo ln -s /usr/bin/python3.6 /usr/local/bin/python && \
     $PIP_INSTALL \
         setuptools \
         && \
