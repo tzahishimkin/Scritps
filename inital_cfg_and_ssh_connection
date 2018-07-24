@@ -1,5 +1,7 @@
 # This script requires some interaction with the user as it is setting the SH key connection to the Git:
 
+#Make sure you downloaded Ubuntu16.04
+lsb_release -a | grep 16.04
 
 # Run key generator:
 ssh-keygen 
