@@ -33,8 +33,8 @@ sudo apt-get update && \
     $APT_INSTALL \
 		software-properties-common \
 		&& \
-	    add-apt-repository ppa:deadsnakes/ppa && \
-	    apt-get update && \
+	    sudo add-apt-repository ppa:deadsnakes/ppa && \
+	    sudo apt-get update && \
     $APT_INSTALL \
 		python3.6 \
 		python3.6-dev \
@@ -64,7 +64,7 @@ sudo apt-get update && \
     tar -zxf ~/boost.tar.gz -C ~ && \
     cd ~/boost_* && \
     ./bootstrap.sh --with-python=python3.6 && \
-    ./b2 install --prefix=/usr/local && \
+    sudo ./b2 install --prefix=/usr/local && \
 
 # ==================================================================
 # tensorflow
@@ -100,7 +100,7 @@ sudo apt-get update && \
           -D BUILD_TESTS=OFF \
           -D BUILD_PERF_TESTS=OFF \
           .. && \
-    make -j"$(nproc)" install && \
+    sudo make -j"$(nproc)" install && \
 
 # ==================================================================
 # caffe
@@ -108,7 +108,7 @@ sudo apt-get update && \
 
     $GIT_CLONE https://github.com/NVIDIA/nccl ~/nccl && \
     cd ~/nccl && \
-    make -j"$(nproc)" install && \
+    sudo make -j"$(nproc)" install && \
 
     $GIT_CLONE https://github.com/BVLC/caffe ~/caffe && \
     cp ~/caffe/Makefile.config.example ~/caffe/Makefile.config && \
@@ -125,7 +125,7 @@ sudo apt-get update && \
     sed -i 's/\/usr\/local\/include/\/usr\/local\/include \/usr\/include\/hdf5\/serial/g' ~/caffe/Makefile.config && \
     sed -i 's/hdf5/hdf5_serial/g' ~/caffe/Makefile && \
     cd ~/caffe && \
-    make -j"$(nproc)" -Wno-deprecated-gpu-targets distribute && \
+    sudo make -j"$(nproc)" -Wno-deprecated-gpu-targets distribute && \
 
     # fix ValueError caused by python-dateutil 1.x
     sed -i 's/,<2//g' ~/caffe/python/requirements.txt && \
@@ -134,17 +134,17 @@ sudo apt-get update && \
         -r ~/caffe/python/requirements.txt && \
 
     cd ~/caffe/distribute/bin && \
-    for file in *.bin; do mv "$file" "${file%%.bin}"; done && \
+    sudo for file in *.bin; do mv "$file" "${file%%.bin}"; done && \
     cd ~/caffe/distribute && \
-    cp -r bin include lib proto /usr/local/ && \
-    cp -r python/caffe /usr/local/lib/python3.6/dist-packages/ && \
+    sudo cp -r bin include lib proto /usr/local/ && \
+    sudo cp -r python/caffe /usr/local/lib/python3.6/dist-packages/ && \
 
 # ==================================================================
 # config & cleanup
 # ------------------------------------------------------------------
 
     ldconfig && \
-    apt-get clean && \
-    apt-get autoremove && \
-    rm -rf /var/lib/apt/lists/* /tmp/* ~/*
+    sudo apt-get clean && \
+    sudo apt-get autoremove && \
+    sudo rm -rf /var/lib/apt/lists/* /tmp/* ~/*
 
