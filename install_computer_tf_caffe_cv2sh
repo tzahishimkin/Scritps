@@ -3,9 +3,9 @@
 # It installs tensorflow, opencv, blast, Caffe 
 
 
-set APT_INSTALL="sudo apt-get install -y --no-install-recommends" && \
-set PIP_INSTALL="python -m pip --no-cache-dir install --upgrade" && \
-set GIT_CLONE="git clone --depth 10" 
+export  APT_INSTALL="sudo apt-get install -y --no-install-recommends" && \
+export PIP_INSTALL="sudo python -m pip --no-cache-dir install --upgrade" && \
+export GIT_CLONE="git clone --depth 10" 
 
 rm -rf /var/lib/apt/lists/* \
            /etc/apt/sources.list.d/cuda.list \
