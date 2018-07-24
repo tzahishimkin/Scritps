@@ -167,7 +167,7 @@ sudo apt-get install libnccl-dev  -y
         -r ~/caffe/python/requirements.txt && \
 
     cd ~/caffe/distribute/bin && \
-    sudo for file in *.bin; do mv "$file" "${file%%.bin}"; done && \
+    for file in *.bin; do sudo mv "$file" "${file%%.bin}"; done && \
     cd ~/caffe/distribute && \
     sudo cp -r bin include lib proto /usr/local/ && \
     sudo cp -r python/caffe /usr/local/lib/python3.6/dist-packages/ && \
@@ -176,7 +176,7 @@ sudo apt-get install libnccl-dev  -y
 # config & cleanup
 # ------------------------------------------------------------------
 
-    ldconfig && \
+    sudo ldconfig && \
     sudo apt-get clean && \
     sudo apt-get autoremove && \
     sudo rm -rf /var/lib/apt/lists/* /tmp/* ~/*
