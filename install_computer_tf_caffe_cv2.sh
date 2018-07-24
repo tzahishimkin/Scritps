@@ -31,9 +31,12 @@ sudo apt-get update && \
 # ==================================================================
 # Install lfs for git:
 # ------------------------------------------------------------------
+git clone https://github.com/git-lfs/git-lfs.git
+cd git-lgs
+sudo git lfs install
+cd -
+#curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-git lfs install
 
 # ==================================================================
 # Install Nvidia driver, CUDA9, CUDNN7
