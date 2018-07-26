@@ -223,7 +223,7 @@ fi
     cd ~/caffe/distribute && \
     sudo cp -r bin include lib proto /usr/local/ && \
     sudo cp -r python/caffe /usr/local/lib/python3.6/dist-packages/ && \
-
+    sudo ldconfig #Linking the Caffe to the libcaffe.so in packages
 
 
 # ==================================================================
@@ -234,7 +234,7 @@ if [[ $cuda_version = "9.0" ]]; then
 elif [[ $cuda_version = "9.1" ]]; then 
      sudo pip install http://download.pytorch.org/whl/cu91/torch-0.4.0-cp36-cp36m-linux_x86_64.whl 
 elif [[ $cuda_version = "9.2" ]]; then 
-     ehco "Torch not supported in Cuda9.2
+     echo "Torch not supported in Cuda9.2"
 fi
 
 sudo pip install torchvision
@@ -245,8 +245,8 @@ sudo pip install torchvision
 # config & cleanup
 # ------------------------------------------------------------------
 
-    sudo ldconfig && \
-    sudo apt-get clean && \
-    sudo apt-get autoremove && \
-    sudo rm -rf /var/lib/apt/lists/* /tmp/* ~/*
+sudo ldconfig && \
+sudo apt-get clean && \
+sudo apt-get autoremove && \
+sudo rm -rf /var/lib/apt/lists/* /tmp/* ~/*
 
