@@ -212,8 +212,8 @@ fi
     sudo make -j"$(nproc)" -Wno-deprecated-gpu-targets distribute && \
 
     # fix ValueError caused by python-dateutil 1.x
-    sed -i 's/,<2//g' ~/caffe/python/requirements.txt && \   
-    sed -i 's/pyyaml>.*/pyyaml/g' ~/caffe/python/requirements.txt && \
+    sudo sed -i 's/,<2//g' ~/caffe/python/requirements.txt && \   
+    sudo sed -i 's/pyyaml>.*/pyyaml/g' ~/caffe/python/requirements.txt && \
 	
    sudo pip install \
         -r ~/caffe/python/requirements.txt && \
