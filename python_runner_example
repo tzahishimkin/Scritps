@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+#Example how to construct a runner file
+
+export MXNET_CPU_WORKER_NTHREADS=24
+export MXNET_CUDNN_AUTOTUNE_DEFAULT=0
+export MXNET_ENGINE_TYPE=ThreadedEnginePerDevice
+
+DATA_DIR=../datasets/faces_ms1m_112x112
+
+NETWORK=m2
+JOB=arcface
+MODELDIR="../model-$NETWORK-$JOB"
+mkdir -p "$MODELDIR"
+PREFIX="$MODELDIR/model"
+LOGFILE="$MODELDIR/log"
+CUDA_VISIBLE_DEVICES='0,1,2,3,4,5,6,7' python -u train_softmax.py --data-dir $DATA_DIR --ckpt 2  --pretrained "$PREFIX,0021" --network "$NETWORK" --loss-type 4  --prefix "$PREFIX" --lr 0.05 --lr-steps 1600000,160000000  --per-batch-size 32  2>&1 | tee "$LOGFILE"
